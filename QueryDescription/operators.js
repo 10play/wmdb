@@ -9,6 +9,7 @@ exports.desc = void 0;
 exports.eq = eq;
 exports.experimentalJoinTables = experimentalJoinTables;
 exports.experimentalNestedJoin = experimentalNestedJoin;
+exports.ftsMatch = ftsMatch;
 exports.gt = gt;
 exports.gte = gte;
 exports.includes = includes;
@@ -205,6 +206,16 @@ function includes(value) {
   (0, _invariant.default)('string' === typeof value, 'Value passed to Q.includes() is not a string');
   return {
     operator: 'includes',
+    right: {
+      value: value
+    },
+    type: comparisonSymbol
+  };
+}
+function ftsMatch(value) {
+  (0, _invariant.default)('string' === typeof value, 'Value passed to Q.ftsMarch() is not a string');
+  return {
+    operator: 'ftsMatch',
     right: {
       value: value
     },

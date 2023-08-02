@@ -74,7 +74,8 @@ function validateColumnSchema(column) {
 function tableSchema({
   name: name,
   columns: columnArray,
-  unsafeSql: unsafeSql
+  unsafeSql: unsafeSql,
+  ftsConfig: ftsConfig
 }) {
   if ('production' !== process.env.NODE_ENV) {
     (0, _invariant.default)(name, "Missing table name in schema");
@@ -91,6 +92,7 @@ function tableSchema({
     name: name,
     columns: columns,
     columnArray: columnArray,
-    unsafeSql: unsafeSql
+    unsafeSql: unsafeSql,
+    ftsConfig: ftsConfig
   };
 }

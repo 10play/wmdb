@@ -1,7 +1,7 @@
 "use strict";
 
 exports.__esModule = true;
-exports.where = exports.weakGt = exports.unsafeSqlQuery = exports.unsafeSqlExpr = exports.unsafeLokiTransform = exports.unsafeLokiExpr = exports.take = exports.sortBy = exports.skip = exports.sanitizeLikeString = exports.queryWithoutDeleted = exports.or = exports.oneOf = exports.on = exports.notLike = exports.notIn = exports.notEq = exports.lte = exports.lt = exports.like = exports.includes = exports.gte = exports.gt = exports.experimentalNestedJoin = exports.experimentalJoinTables = exports.eq = exports.desc = exports.column = exports.buildQueryDescription = exports.between = exports.asc = exports.and = void 0;
+exports.where = exports.weakGt = exports.unsafeSqlQuery = exports.unsafeSqlExpr = exports.unsafeLokiTransform = exports.unsafeLokiExpr = exports.take = exports.sortBy = exports.skip = exports.sanitizeLikeString = exports.queryWithoutDeleted = exports.or = exports.oneOf = exports.on = exports.notLike = exports.notIn = exports.notEq = exports.lte = exports.lt = exports.like = exports.includes = exports.gte = exports.gt = exports.ftsMatch = exports.experimentalNestedJoin = exports.experimentalJoinTables = exports.eq = exports.desc = exports.column = exports.buildQueryDescription = exports.between = exports.asc = exports.and = void 0;
 var _operators = require("./operators");
 exports.eq = _operators.eq;
 exports.notEq = _operators.notEq;
@@ -30,6 +30,7 @@ exports.sortBy = _operators.sortBy;
 exports.take = _operators.take;
 exports.skip = _operators.skip;
 exports.on = _operators.on;
+exports.ftsMatch = _operators.ftsMatch;
 exports.experimentalJoinTables = _operators.experimentalJoinTables;
 exports.experimentalNestedJoin = _operators.experimentalNestedJoin;
 exports.unsafeSqlQuery = _operators.unsafeSqlQuery;

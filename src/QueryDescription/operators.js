@@ -154,6 +154,11 @@ export function includes(value: string): Comparison {
   return { operator: 'includes', right: { value }, type: comparisonSymbol }
 }
 
+export function ftsMatch(value: string): Comparison {
+  invariant(typeof value === 'string', 'Value passed to Q.ftsMarch() is not a string')
+  return { operator: 'ftsMatch', right: { value }, type: comparisonSymbol }
+}
+
 export function column(name: ColumnName): ColumnDescription {
   invariant(typeof name === 'string', 'Name passed to Q.column() is not a string')
   return { column: checkName(name), type: columnSymbol }

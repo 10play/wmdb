@@ -7,12 +7,19 @@ import type Model from '../Model'
 export type TableName<T extends Model> = string
 export type ColumnName = string
 
+export type FTSConfig = $Exact<{
+  tokenizer?: 'default' | 'porter' | 'trigram'
+  isCaseSensitive?: boolean
+  disabled?: boolean
+}>
+
 export type ColumnType = 'string' | 'number' | 'boolean'
 export type ColumnSchema = $RE<{
   name: ColumnName
   type: ColumnType
   isOptional?: boolean
   isIndexed?: boolean
+  isFTS?: boolean
 }>
 
 export type ColumnMap = { [name: ColumnName]: ColumnSchema }
@@ -21,6 +28,7 @@ export type TableSchemaSpec = $Exact<{
   name: TableName<any>
   columns: ColumnSchema[]
   unsafeSql?: (_: string) => string
+  ftsConfig?: FTSConfig
 }>
 
 export type TableSchema = $RE<{
@@ -29,6 +37,7 @@ export type TableSchema = $RE<{
   columns: ColumnMap
   columnArray: ColumnSchema[]
   unsafeSql?: (_: string) => string
+  ftsConfig?: FTSConfig
 }>
 
 type TableMap = { [name: TableName<any>]: TableSchema }
@@ -57,4 +66,9 @@ export function appSchema({ version, tables: tableList, unsafeSql }: AppSchemaSp
 
 export function validateColumnSchema(column: ColumnSchema): void
 
-export function tableSchema({ name, columns: columnArray, unsafeSql }: TableSchemaSpec): TableSchema
+export function tableSchema({
+  name,
+  columns: columnArray,
+  unsafeSql,
+  ftsConfig,
+}: TableSchemaSpec): TableSchema

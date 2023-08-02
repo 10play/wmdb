@@ -59,7 +59,14 @@ if(${ENCRYPTED_DB})
         add_definitions(
                 -DSQLITE_HAS_CODEC
                 -DSQLITE_TEMP_STORE=2
+                -DSQLITE_ENABLE_FTS4
+                -DSQLITE_ENABLE_FTS4_UNICODE61å
+                -DSQLITE_ENABLE_FTS3_PARENTHESIS
+                -DSQLITE_ENABLE_UNLOCK_NOTIFY
+                -DSQLITE_ENABLE_JSON1
+                -DSQLITE_ENABLE_FTS5
         )
+        message("full-text search enabled")
 endif()
 
 # simdjson is slow without optimization

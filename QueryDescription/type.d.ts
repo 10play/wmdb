@@ -21,6 +21,7 @@ export type Operator =
   | 'like'
   | 'notLike'
   | 'includes'
+  | 'ftsMatch'
 
 export type ColumnDescription = $RE<{ column: ColumnName; type?: symbol }>
 export type ComparisonRight =

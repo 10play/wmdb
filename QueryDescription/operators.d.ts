@@ -98,6 +98,8 @@ export function sanitizeLikeString(value: string): string
 
 export function includes(value: string): Comparison
 
+export function ftsMatch(value: string): Comparison
+
 export function column(name: ColumnName): ColumnDescription
 
 export function where(left: ColumnName, valueOrComparison: Value | Comparison): WhereDescription

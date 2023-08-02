@@ -41,7 +41,8 @@ var operators = {
   notIn: 'not in',
   between: 'between',
   like: 'like',
-  notLike: 'not like'
+  notLike: 'not like',
+  ftsMatch: 'match'
 };
 var encodeComparison = function (table, comparison) {
   var {
@@ -92,6 +93,14 @@ var encodeWhereCondition = function (associations, table, left, comparison) {
     Q.where(left, Q.gt(Q.column(comparison.right.column))), Q.and(Q.where(left, Q.notEq(null)), Q.where(comparison.right.column, null))));
   } else if ('includes' === operator) {
     return "instr(\"".concat(table, "\".\"").concat(left, "\", ").concat(getComparisonRight(table, comparison.right), ")");
+  } else if ('ftsMatch' === operator) {
+    var srcTable = "\"".concat(table, "\"");
+    var ftsTable = "\"_fts_".concat(table, "\"");
+    var rowid = '"rowid"';
+    var ftsColumn = "\"".concat(left, "\"");
+    var matchValue = getComparisonRight(table, comparison.right);
+    var ftsTableColumn = table === left ? "".concat(ftsTable) : "".concat(ftsTable, ".").concat(ftsColumn);
+    return "".concat(srcTable, ".").concat(rowid, " in (") + "select ".concat(ftsTable, ".").concat(rowid, " from ").concat(ftsTable, " ") + "where ".concat(ftsTableColumn, " match ").concat(matchValue) + ")";
   }
   return "\"".concat(table, "\".\"").concat(left, "\" ").concat(encodeComparison(table, comparison));
 };

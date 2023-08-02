@@ -38,7 +38,7 @@ android {
                 // arguments "-DANDROID_STL=c++_shared"
                 if(isUsingEncryptedDB){
                     arguments '-DENCRYPTED_DB=1', '-DANDROID_STL=c++_shared'
-                    cFlags '-DSQLITE_HAS_CODEC', '-DSQLITE_TEMP_STORE=2'
+                    cFlags '-DSQLITE_HAS_CODEC', '-DSQLITE_TEMP_STORE=2', '-DSQLITE_ENABLE_FTS5'
                 }
             }
         }

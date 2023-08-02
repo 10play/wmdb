@@ -55,6 +55,7 @@ export {
   take,
   skip,
   on,
+  ftsMatch,
   experimentalJoinTables,
   experimentalNestedJoin,
   unsafeSqlQuery,

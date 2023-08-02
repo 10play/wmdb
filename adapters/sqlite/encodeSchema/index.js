@@ -129,7 +129,7 @@ var encodeFTSTable = function ({
   var tokenizer = !ftsConfig ? '' : ftsConfig.tokenizer;
   var isCaseSensitive = !ftsConfig ? false : ftsConfig.caseSensitive;
   var ftsInnerSQL = "".concat(tokenizer || 'unicode61').concat(isCaseSensitive ? ' case_sensitive 1' : '');
-  var ftsSQL = null !== ftsConfig && void 0 !== ftsConfig && ftsConfig.disabled ? '' : ", tokenize=\"".concat(ftsInnerSQL, "\"");
+  var ftsSQL = null !== ftsConfig && void 0 !== ftsConfig && ftsConfig.disabled ? '' : ", tokenize=\"".concat(ftsInnerSQL, " tokenchars '-_.!?#$%^&*()@'\"");
   return "create virtual table \"".concat(ftsTableName, "\" using fts5(").concat(columnsSQL).concat(ftsSQL, ");");
 };
 var encodeFTSSearch = function (tableSchema) {

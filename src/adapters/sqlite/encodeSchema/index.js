@@ -126,7 +126,9 @@ const encodeFTSTable: ({
   const tokenizer = !ftsConfig ? '' : ftsConfig.tokenizer
   const isCaseSensitive = !ftsConfig ? false : ftsConfig.caseSensitive
   const ftsInnerSQL = `${tokenizer || 'unicode61'}${isCaseSensitive ? ' case_sensitive 1' : ''}`
-  const ftsSQL = ftsConfig?.disabled ? '' : `, tokenize="${ftsInnerSQL}"`
+  const ftsSQL = ftsConfig?.disabled
+    ? ''
+    : `, tokenize="${ftsInnerSQL} tokenchars '-_.!?#$%^&*()@'"`
   return `create virtual table "${ftsTableName}" using fts5(${columnsSQL}${ftsSQL});`
 }
 
